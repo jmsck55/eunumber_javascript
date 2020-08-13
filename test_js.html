@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="myeunumber.js"></script>
+</head>
+<body>
+<script>
+function myFunction() {
+  window.alert(GetVersion());
+}
+myFunction();
+
+var in0, in1, in2, exp0, exp1, exp2, out1;
+
+in1 = '999'.split('');
+exp1 = 122;
+in2 = '1234'.split('');
+exp2 = 123;
+
+in1 = ToNumberArray(in1);
+in2 = ToNumberArray(in2);
+
+document.writeln("<pre>");
+document.writeln(exp1);
+document.writeln(in1.length);
+document.writeln(in1);
+document.writeln(exp2);
+document.writeln(in2.length);
+document.writeln(in2);
+document.writeln("</pre>");
+
+
+in0 = in1.slice(0);
+
+in0[in0.length-1] = -4;
+
+document.writeln("<pre>");
+document.writeln(in0.length);
+document.writeln(in0);
+
+in0 = Borrow(in0, 10);
+
+document.writeln(in0);
+
+document.writeln("</pre>");
+
+
+in0 = [22,9,11];
+
+var out;
+
+document.writeln("<pre>");
+document.writeln("Carry test");
+document.writeln(in0.length);
+document.writeln(in0);
+
+out = Carry(in0, 10);
+
+document.writeln(out.length);
+document.writeln(out);
+document.writeln("</pre>");
+
+
+var total;
+
+document.writeln("<pre>");
+document.writeln("Add test");
+
+document.writeln(in1);
+document.writeln(in2);
+
+total = Add( in1, in2 );
+
+document.writeln("total is: ");
+document.writeln(total);
+
+document.writeln("</pre>");
+
+
+in0 = [1,0,0];
+in0 = ToNumberArray(in0);
+
+
+document.writeln("<pre>");
+document.writeln("convert_radix() test");
+document.writeln(in0.length);
+document.writeln(in0);
+
+out1 = ConvertRadix(in0, 16, 10);
+
+document.writeln(out1.length);
+document.writeln(out1);
+
+document.writeln("</pre>");
+
+
+out1 = Mult(in1, in2);
+
+document.writeln("<pre>");
+document.writeln("mult test:");
+document.writeln(out1.length);
+document.writeln(out1);
+
+out1 = Carry(out1, 10);
+
+document.writeln(out1.length);
+document.writeln(out1);
+document.writeln("</pre>");
+
+
+document.writeln("<pre>");
+document.writeln("adjust_round Test:");
+
+var max = 2;
+var base = 10;
+var tmp = AdjustRound( in1, exp1, max, base );
+
+in0 = tmp[0];
+exp0 = tmp[1];
+
+document.writeln(in0.length);
+document.writeln(in0);
+document.writeln(exp0);
+document.writeln("</pre>");
+
+
+var ret = MultExp(in1, exp1, in2, exp2, 100, 10);
+out1 = ret[0];
+var exponent = ret[1];
+
+document.writeln("<pre>");
+document.writeln("Results:");
+
+document.writeln(exponent);
+document.writeln(out1.length);
+document.writeln(out1);
+document.writeln("</pre>");
+
+
+var ret = AddExp(in1, exp1, in2, exp2, 100, 10);
+var out1 = ret[0];
+var exponent = ret[1];
+
+document.writeln("<pre>");
+document.writeln("Results:");
+
+document.writeln(exponent);
+document.writeln(out1.length);
+document.writeln(out1);
+document.writeln("</pre>");
+
+
+var guess0 = [4];
+var exp0 = -1;
+var num1 = [2];
+var exp1 = 0;
+
+document.writeln("<pre>");
+document.writeln("Divide 1 by 2:");
+
+
+var r = ProtoMultInvExp(guess0, exp0, num1, exp1, 100, 10);
+
+document.writeln(r[1]);
+document.writeln(r[0].length);
+document.writeln(r[0]);
+document.writeln("</pre>");
+
+
+var num1 = [-9,-9];
+var exp1 = 0;
+
+document.writeln("<pre>");
+document.writeln("Divide 1 by 9.9:");
+
+var r = MultInvExp(num1, exp1, 10, 10);
+
+document.writeln(r[1]);
+document.writeln(r[0].length);
+document.writeln(r[0]);
+document.writeln("</pre>");
+
+num1 = [2,5,6];
+num2 = [2];
+exp1 = 2;
+exp2 = 0;
+
+document.writeln("<pre>");
+document.writeln("Divide 2 by 256");
+
+var r = DivideExp(num2, exp2, num1, exp1, 100, 10);
+
+document.writeln(r[1]);
+document.writeln(r[0].length);
+document.writeln(r[0]);
+document.writeln("</pre>");
+</script>
+</body>
+</html>
